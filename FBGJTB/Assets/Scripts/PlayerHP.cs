@@ -1,36 +1,33 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerHP: MonoBehaviour
 {
 
     //The box's current health point total
-    [SerializeField] public int currentHealth = 3;
-    [SerializeField] private int number;
-    [SerializeField] private Button respawnButton;
+    [SerializeField] public int currentHealth = 3, playerNumber;
+    [SerializeField] private GameObject deathNotice;
+    [SerializeField] private GameObject[] spawnPoints;
     private int kills;
     private int deaths;
-    public GameObject player;
-    public float Min = 0;
-    public float Max = 10;
 
-
-    public void Damage(int damageAmount)
-    {
+    public void Damage(int damageAmount) {
         //subtract damage amount when Damage function is called
         currentHealth -= damageAmount;
 
         //Check if health has fallen below zero
-        if (currentHealth <= 0)
-        {
+        if (currentHealth <= 0) {
             deaths++;
-            respawnButton.gameObject.SetActive(true);
+            deathNotice.gameObject.SetActive(true);
+            StartCoroutine(WaitToRespawn());
             UIChangeMessage uiChangedMessage = new()
             {
                 Kills = kills,
                 Deaths = deaths,
-                Player = number
+                Player = playerNumber
             };
             Broker.InvokeSubscribers(typeof(UIChangeMessage), uiChangedMessage);
             //if health has fallen below zero, deactivate it 
@@ -39,13 +36,14 @@ public class PlayerHP: MonoBehaviour
         }
     }
     
-    public void Respawn()
-    {
-        float x = Random.Range(Min,Max);
-        float y = Random.Range(Min,Max);
-        float z = Random.Range(Min,Max);
-        
-        player.transform.position = new Vector3(x,y,z);
-        respawnButton.gameObject.SetActive(false);
+    private void Respawn(){
+        var spawnIndex = Random.Range(0, spawnPoints.Length);
+        transform.position = spawnPoints[spawnIndex].transform.position;
+        deathNotice.SetActive(false);
+    }
+
+    private IEnumerator WaitToRespawn(){
+        yield return new WaitForSeconds(2);
+        Respawn();
     }
 }

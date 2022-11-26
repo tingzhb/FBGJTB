@@ -16,8 +16,8 @@ public class UIController : MonoBehaviour{
 	}
 	private void OnUIChangedMessageReceived(UIChangeMessage obj){
 		if (obj.Player == playerNumber) {
-			kills.text = $"Kills{obj.Kills}";
-			deaths.text = $"Deaths{obj.Deaths}";
+			kills.text = $"K: {obj.Kills}";
+			deaths.text = $"D: {obj.Deaths}";
 		}
 	}
 }

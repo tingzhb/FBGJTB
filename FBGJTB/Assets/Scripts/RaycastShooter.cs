@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class RaycastShooter : MonoBehaviour 
-{
-
+public class RaycastShooter : MonoBehaviour{
+    [SerializeField] private bool amRight;
     public int gunDamage = 1;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
@@ -16,9 +15,10 @@ public class RaycastShooter : MonoBehaviour
     private LineRenderer laserLine;                                        // Reference to the LineRenderer component which will display our laserline
     private float nextFire;                                                // Float to store the time the player will be allowed to fire again, after firing
 
+    private bool isRight;
 
-    void Start () 
-    {
+    void Start (){
+        isRight = GetComponentInParent<CharacterMovement>().isRight;
         // Get and store a reference to our LineRenderer component
         laserLine = GetComponent<LineRenderer>();
 
@@ -33,52 +33,53 @@ public class RaycastShooter : MonoBehaviour
     void Update () 
     {
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire) 
-        {
-            Debug.Log("Firing!");
-            // Update the time when our player can fire next
-            nextFire = Time.time + fireRate;
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire && !isRight && !amRight){
+            Fire();
+        }
+        if (Input.GetKey(KeyCode.RightShift) && Time.time > nextFire && isRight && amRight){
+            Fire();
+        }
+    }
+    private void Fire(){
 
-            // Start our ShotEffect coroutine to turn our laser line on and off
-            StartCoroutine (ShotEffect());
+        // Update the time when our player can fire next
+        nextFire = Time.time + fireRate;
 
-            // Create a vector at the center of our camera's viewport
-            Vector3 rayOrigin = fpsCam.ViewportToWorldPoint (new Vector3(0.5f, 0.5f, 0.0f));
+        // Start our ShotEffect coroutine to turn our laser line on and off
+        StartCoroutine(ShotEffect());
 
-            // Declare a raycast hit to store information about what our raycast has hit
-            RaycastHit hit;
+        // Create a vector at the center of our camera's viewport
+        Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
-            // Set the start position for our visual effect for our laser to the position of gunEnd
-            laserLine.SetPosition (0, gunEnd.position);
+        // Declare a raycast hit to store information about what our raycast has hit
+        RaycastHit hit;
 
-            // Check if our raycast has hit anything
-            if (Physics.Raycast (rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
-            {
-                // Set the end position for our laser line 
-                laserLine.SetPosition (1, hit.point);
+        // Set the start position for our visual effect for our laser to the position of gunEnd
+        laserLine.SetPosition(0, gunEnd.position);
 
-                // Replace with enemy player/add enemy player
-                PlayerHP health = hit.collider.GetComponentInParent<PlayerHP>();
+        // Check if our raycast has hit anything
+        if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange)){
+            // Set the end position for our laser line 
+            laserLine.SetPosition(1, hit.point);
 
-                // If there was a health script attached
-                if (health != null)
-                {
-                    // Call the damage function of that script, passing in our gunDamage variable
-                    health.Damage (gunDamage);
-                }
+            // Replace with enemy player/add enemy player
+            PlayerHP health = hit.collider.GetComponentInParent<PlayerHP>();
 
-                // Check if the object we hit has a rigidbody attached
-                if (hit.rigidbody != null)
-                {
-                    // Add force to the rigidbody we hit, in the direction from which it was hit
-                    hit.rigidbody.AddForce (-hit.normal * hitForce);
-                }
+            // If there was a health script attached
+            if (health != null){
+                // Call the damage function of that script, passing in our gunDamage variable
+                health.Damage(gunDamage);
             }
-            else
-            {
-                // If we did not hit anything, set the end of the line to a position directly in front of the camera at the distance of weaponRange
-                laserLine.SetPosition (1, rayOrigin + (fpsCam.transform.forward * weaponRange));
+
+            // Check if the object we hit has a rigidbody attached
+            if (hit.rigidbody != null){
+                // Add force to the rigidbody we hit, in the direction from which it was hit
+                hit.rigidbody.AddForce(-hit.normal * hitForce);
             }
+        }
+        else{
+            // If we did not hit anything, set the end of the line to a position directly in front of the camera at the distance of weaponRange
+            laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
         }
     }
 
