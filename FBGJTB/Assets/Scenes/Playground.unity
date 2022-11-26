@@ -1560,6 +1560,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146446739452692811, guid: cce18c3d6a9ce5c468b99834736b55a8,
+        type: 3}
+      propertyPath: fpsCam
+      value: 
+      objectReference: {fileID: 1201989718}
     - target: {fileID: 2567016826611555325, guid: cce18c3d6a9ce5c468b99834736b55a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1620,6 +1625,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 4693799343231904753, guid: cce18c3d6a9ce5c468b99834736b55a8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681033918175877539, guid: cce18c3d6a9ce5c468b99834736b55a8,
+        type: 3}
+      propertyPath: fpsCam
+      value: 
+      objectReference: {fileID: 1201989718}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cce18c3d6a9ce5c468b99834736b55a8, type: 3}
 --- !u!1001 &7131462750171403763
@@ -1629,6 +1644,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1513530851846147955, guid: 5b52a9cd21568ab4a8efb95a70cbabe8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196332746034347297, guid: 5b52a9cd21568ab4a8efb95a70cbabe8,
+        type: 3}
+      propertyPath: fpsCam
+      value: 
+      objectReference: {fileID: 2001912279}
     - target: {fileID: 6124836000398434314, guid: 5b52a9cd21568ab4a8efb95a70cbabe8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1684,6 +1709,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6209009647584112073, guid: 5b52a9cd21568ab4a8efb95a70cbabe8,
+        type: 3}
+      propertyPath: fpsCam
+      value: 
+      objectReference: {fileID: 2001912279}
     - target: {fileID: 6896164729223756464, guid: 5b52a9cd21568ab4a8efb95a70cbabe8,
         type: 3}
       propertyPath: m_Name
