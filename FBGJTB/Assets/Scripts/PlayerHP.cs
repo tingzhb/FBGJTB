@@ -1,14 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerHP: MonoBehaviour
 {
 
     //The box's current health point total
-    public int currentHealth = 3;
+    [SerializeField] public int currentHealth = 3;
     [SerializeField] private int number;
+    [SerializeField] private Button respawnButton;
     private int kills;
     private int deaths;
+    
 
     public void Damage(int damageAmount)
     {
@@ -28,6 +31,7 @@ public class PlayerHP: MonoBehaviour
             Broker.InvokeSubscribers(typeof(UIChangeMessage), uiChangedMessage);
             //if health has fallen below zero, deactivate it 
             gameObject.SetActive (false);
+            respawnButton.gameObject.SetActive(true);
         }
     }
 }
