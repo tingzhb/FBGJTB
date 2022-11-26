@@ -58,7 +58,7 @@ public class RaycastShooter : MonoBehaviour
                 laserLine.SetPosition (1, hit.point);
 
                 // Replace with enemy player/add enemy player
-                EnemyHP health = hit.collider.GetComponent<EnemyHP>();
+                PlayerHP health = hit.collider.GetComponentInParent<PlayerHP>();
 
                 // If there was a health script attached
                 if (health != null)
