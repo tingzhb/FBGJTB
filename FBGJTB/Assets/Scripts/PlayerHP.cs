@@ -13,7 +13,7 @@ public class PlayerHP: MonoBehaviour
     private int deaths;
     public GameObject player;
     public float Min = 0;
-    public float Max = 100;
+    public float Max = 10;
 
 
     public void Damage(int damageAmount)
