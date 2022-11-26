@@ -19,6 +19,7 @@ public class PlayerHP: MonoBehaviour
         //subtract damage amount when Damage function is called
         if (!dead){
             currentHealth -= damageAmount;
+            SendUIChangedMessage();
         }
 
         //Check if health has fallen below zero
@@ -27,25 +28,30 @@ public class PlayerHP: MonoBehaviour
             deaths++;
             deathNotice.gameObject.SetActive(true);
             StartCoroutine(WaitToRespawn());
-            UIChangeMessage uiChangedMessage = new()
-            {
-                Kills = kills,
-                Deaths = deaths,
-                Player = playerNumber
-            };
-            Broker.InvokeSubscribers(typeof(UIChangeMessage), uiChangedMessage);
+            SendUIChangedMessage();
             //if health has fallen below zero, deactivate it 
             //gameObject.SetActive (false);
             
         }
     }
-    
+    private void SendUIChangedMessage(){
+
+        UIChangeMessage uiChangedMessage = new(){
+            Health = currentHealth,
+            Player = playerNumber,
+            Kills = kills,
+            Deaths = deaths
+        };
+        Broker.InvokeSubscribers(typeof(UIChangeMessage), uiChangedMessage);
+    }
+
     private void Respawn(){
         var spawnIndex = Random.Range(0, spawnPoints.Length);
         transform.position = spawnPoints[spawnIndex].transform.position;
         deathNotice.SetActive(false);
         currentHealth = 3;
         dead = false;
+        SendUIChangedMessage();
     }
 
     private IEnumerator WaitToRespawn(){

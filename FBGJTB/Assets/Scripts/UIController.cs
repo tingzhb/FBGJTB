@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour{
 	[SerializeField] private TextMeshProUGUI kills, deaths, pickup;
 	[SerializeField] private int playerNumber;
+	[SerializeField] private GameObject[] healthBars;
 
 	private void Awake(){
 		Broker.Subscribe<UIChangeMessage>(OnUIChangedMessageReceived);
@@ -35,6 +37,12 @@ public class UIController : MonoBehaviour{
 		if (obj.Player == playerNumber) {
 			kills.text = $"K: {obj.Kills}";
 			deaths.text = $"D: {obj.Deaths}";
+			foreach (var healthBar in healthBars){
+				healthBar.SetActive(false);
+			}
+			for (int i = 0; i < obj.Health; i++){
+				healthBars[i].SetActive(true);
+			}
 		}
 	}
 }
