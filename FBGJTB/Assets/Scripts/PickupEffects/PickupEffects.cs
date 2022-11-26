@@ -13,10 +13,13 @@ public class PickupEffects : MonoBehaviour{
 	
 	private void OnNewPickupMessageReceived(PickupMessage obj){
 		if (obj.IsRightPlayer != isRight){
-			if (obj.PickUpNumber == 0){
-				Debug.Log($"Did Something on {obj.PickUpNumber} + {isRight}" );
-				// Influence game effect here
-				
+			switch (obj.PickUpNumber){
+				case 0:
+					Debug.Log($"Did Something on {obj.PickUpNumber} + {isRight}" );
+					// Influence game effect here
+					break;
+				case 1:
+					break;
 			}
 		}	
 		
