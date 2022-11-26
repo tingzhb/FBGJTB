@@ -12,7 +12,7 @@ public class RayViewer : MonoBehaviour
     void Start () 
     {
         // Get and store a reference to our Camera by searching this GameObject and its parents
-        fpsCam = GetComponentInParent<Camera>();
+        fpsCam ??= GetComponentInParent<Camera>();
     }
 
 

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour{
+public class CharacterMovement : MonoBehaviour
+{
     [SerializeField] private float multiplier;
     [SerializeField] public bool isRight;
     private void Update() {
         if (!isRight){
             if (Input.GetKey(KeyCode.A)){
                 transform.Translate(Vector3.left * (multiplier * Time.deltaTime));
-                Debug.Log("A");
             }
             if (Input.GetKey(KeyCode.D)){
                 transform.Translate(Vector3.right * (multiplier * Time.deltaTime));
