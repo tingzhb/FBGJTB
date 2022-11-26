@@ -13,13 +13,17 @@ public class PlayerHP: MonoBehaviour
     [SerializeField] private GameObject[] spawnPoints;
     private int kills;
     private int deaths;
+    private bool dead;
 
     public void Damage(int damageAmount) {
         //subtract damage amount when Damage function is called
-        currentHealth -= damageAmount;
+        if (!dead){
+            currentHealth -= damageAmount;
+        }
 
         //Check if health has fallen below zero
-        if (currentHealth <= 0) {
+        if (currentHealth <= 0){
+            dead = true;
             deaths++;
             deathNotice.gameObject.SetActive(true);
             StartCoroutine(WaitToRespawn());
@@ -40,6 +44,8 @@ public class PlayerHP: MonoBehaviour
         var spawnIndex = Random.Range(0, spawnPoints.Length);
         transform.position = spawnPoints[spawnIndex].transform.position;
         deathNotice.SetActive(false);
+        currentHealth = 3;
+        dead = false;
     }
 
     private IEnumerator WaitToRespawn(){
