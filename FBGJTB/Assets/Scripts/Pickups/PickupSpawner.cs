@@ -17,6 +17,7 @@ public class PickupSpawner : MonoBehaviour{
 		Broker.Unsubscribe<PickupMessage>(OnNewPickupMessageReceived);
 	}
 	private void OnNewPickupMessageReceived(PickupMessage obj){
+		Debug.Log("Message");
 		SpawnObject();
 	}
 	
