@@ -11,7 +11,10 @@ public class PlayerHP: MonoBehaviour
     [SerializeField] private Button respawnButton;
     private int kills;
     private int deaths;
-    
+    public GameObject player;
+    public float Min = 0;
+    public float Max = 100;
+
 
     public void Damage(int damageAmount)
     {
@@ -22,6 +25,7 @@ public class PlayerHP: MonoBehaviour
         if (currentHealth <= 0)
         {
             deaths++;
+            respawnButton.gameObject.SetActive(true);
             UIChangeMessage uiChangedMessage = new()
             {
                 Kills = kills,
@@ -30,8 +34,18 @@ public class PlayerHP: MonoBehaviour
             };
             Broker.InvokeSubscribers(typeof(UIChangeMessage), uiChangedMessage);
             //if health has fallen below zero, deactivate it 
-            gameObject.SetActive (false);
-            respawnButton.gameObject.SetActive(true);
+            //gameObject.SetActive (false);
+            
         }
+    }
+    
+    public void Respawn()
+    {
+        float x = Random.Range(Min,Max);
+        float y = Random.Range(Min,Max);
+        float z = Random.Range(Min,Max);
+        
+        player.transform.position = new Vector3(x,y,z);
+        respawnButton.gameObject.SetActive(false);
     }
 }
