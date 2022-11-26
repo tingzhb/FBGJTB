@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,31 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] public bool isRight;
     [SerializeField] private int addMultiplier;
     private bool invert, boost;
-    
+    private bool canMove = true;
     private void Awake(){
         Broker.Subscribe<PickupMessage>(OnNewPickupMessageReceived);
-        isRight = GetComponent<CharacterMovement>().isRight;
+        Broker.Subscribe<UIChangeMessage>(OnUIChangedMessageReceived);
     }
 	
     private void OnDisable(){
         Broker.Unsubscribe<PickupMessage>(OnNewPickupMessageReceived);
+        Broker.Unsubscribe<UIChangeMessage>(OnUIChangedMessageReceived);
+
+    }
+    private void OnUIChangedMessageReceived(UIChangeMessage obj){
+        if (obj.Player == 0 && !isRight){
+            canMove = false;
+            StartCoroutine(ReableMovement());
+        }
+        if (obj.Player == 1 && isRight){
+            canMove = false;
+            StartCoroutine(ReableMovement());
+        }
+    }
+    
+    private IEnumerator ReableMovement(){
+        yield return new WaitForSeconds(2); 
+        canMove = true;
     }
     private void OnNewPickupMessageReceived(PickupMessage obj){
         if (obj.PickUpNumber == 0 && obj.IsRightPlayer && !isRight){
@@ -54,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Update(){
 
-        if (!isRight){
+        if (!isRight && canMove){
             if (Input.GetKey(KeyCode.A)){
                 transform.Translate(Vector3.left * (movementMultiplierL * Time.deltaTime));
             }
@@ -74,7 +92,7 @@ public class CharacterMovement : MonoBehaviour
                 transform.Rotate(Vector3.up * (lookMultiplierL * Time.deltaTime));
             }
         }
-        if (isRight){
+        if (isRight && canMove){
             if (Input.GetKey(KeyCode.J)){
                 transform.Translate(Vector3.left * (movementMultiplierR * Time.deltaTime));
             }
@@ -94,7 +112,7 @@ public class CharacterMovement : MonoBehaviour
                 transform.Rotate(Vector3.up * (lookMultiplierR * Time.deltaTime));
             }
         }
-        if (!isRight && invert){
+        if (!isRight && invert && canMove){
             if (Input.GetKey(KeyCode.L)){
                 transform.Translate(Vector3.left * (movementMultiplierR * Time.deltaTime));
             }
@@ -115,7 +133,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
         }
-        if (isRight && invert){
+        if (isRight && invert && canMove){
             if (Input.GetKey(KeyCode.D)){
                 transform.Translate(Vector3.left * (movementMultiplierL * Time.deltaTime));
             }

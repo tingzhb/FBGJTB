@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RaycastShooter : MonoBehaviour{
     [SerializeField] private bool amRight;
+    [SerializeField] private float addLag;
+    private float lag;
     public int gunDamage = 1;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
     public float weaponRange = 50f;                                        // Distance in Unity units over which the player can fire
@@ -28,17 +30,45 @@ public class RaycastShooter : MonoBehaviour{
         // Get and store a reference to our Camera by searching this GameObject and its parents
         //fpsCam = GetComponentInParent<Camera>();
     }
+    
+    private void Awake(){
+        Broker.Subscribe<PickupMessage>(OnNewPickupMessageReceived);
+        isRight = GetComponentInParent<CharacterMovement>().isRight;
+    }
+	
+    private void OnDisable(){
+        Broker.Unsubscribe<PickupMessage>(OnNewPickupMessageReceived);
+    }
+    private void OnNewPickupMessageReceived(PickupMessage obj){
+        if (obj.PickUpNumber == 2 && obj.IsRightPlayer && !isRight){
+            lag += addLag;
+            StartCoroutine(ResetLag(obj.PickUpDuration));
+        }
+        if (obj.PickUpNumber == 2 && !obj.IsRightPlayer && isRight){
+            lag +=addLag;
+            StartCoroutine(ResetLag(obj.PickUpDuration));
+        }
+    }
 
+    private IEnumerator ResetLag(float duration){
+        yield return new WaitForSeconds(duration);
+        lag -= addLag;
+    }
 
     void Update () 
     {
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if (Input.GetKey(KeyCode.Space) && Time.time > nextFire && !isRight && !amRight){
-            Fire();
+            StartCoroutine(InputLag(lag));
         }
         if (Input.GetKey(KeyCode.RightShift) && Time.time > nextFire && isRight && amRight){
-            Fire();
+            StartCoroutine(InputLag(lag));
         }
+    }
+
+    private IEnumerator InputLag(float latency){
+        yield return new WaitForSeconds(latency);
+        Fire();
     }
     private void Fire(){
 

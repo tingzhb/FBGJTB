@@ -22,7 +22,7 @@ public class PlayerHP: MonoBehaviour
         }
 
         //Check if health has fallen below zero
-        if (currentHealth <= 0){
+        if (currentHealth <= 0 && !dead){
             dead = true;
             deaths++;
             deathNotice.gameObject.SetActive(true);
