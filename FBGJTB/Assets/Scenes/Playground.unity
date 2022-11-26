@@ -3458,6 +3458,7 @@ MonoBehaviour:
   - {fileID: 669605357660297600, guid: 64897be9abdb02f43a6969ea9cd6c55a, type: 3}
   - {fileID: 8529110055638769220, guid: 500337c0b31afc04bb91ae9b009cac68, type: 3}
   - {fileID: 7116330307823108207, guid: 9328a4b55a9e8414599d318751d0b281, type: 3}
+  - {fileID: 8529110055638769220, guid: b0e7ae7e640688242a570ba714a01687, type: 3}
 --- !u!1 &1764214107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3523,6 +3524,25 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1 &1767035181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6863677940515654007, guid: cce18c3d6a9ce5c468b99834736b55a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6863677940345473307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1767035185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767035181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2eb2d2a791f3c9448e65227763cb9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testVar: 0
 --- !u!1 &1943093784
 GameObject:
   m_ObjectHideFlags: 0
