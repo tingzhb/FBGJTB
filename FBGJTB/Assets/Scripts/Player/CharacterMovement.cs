@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour{
     [SerializeField] private float multiplier;
-    [SerializeField] private bool isRight;
+    [SerializeField] public bool isRight;
     private void Update() {
         if (!isRight){
             if (Input.GetKey(KeyCode.A)){
