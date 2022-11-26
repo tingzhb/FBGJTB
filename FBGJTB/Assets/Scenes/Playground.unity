@@ -317,6 +317,26 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1201989718}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 142387215}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerHP, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31e6927dfa449b14cabd8304fb628b75, type: 3}
 --- !u!1 &142387210 stripped
@@ -340,6 +360,9 @@ MonoBehaviour:
   currentHealth: 3
   number: 0
   respawnButton: {fileID: 821800099}
+  player: {fileID: 142387210}
+  Min: 0
+  Max: 100
 --- !u!114 &257744245 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
@@ -1106,6 +1129,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.2554369
       objectReference: {fileID: 0}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1566225913}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerHP, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195078145954014529, guid: 31e6927dfa449b14cabd8304fb628b75,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31e6927dfa449b14cabd8304fb628b75, type: 3}
 --- !u!1 &1437275981
@@ -1240,6 +1283,9 @@ MonoBehaviour:
   currentHealth: 3
   number: 1
   respawnButton: {fileID: 257744245}
+  player: {fileID: 1566225908}
+  Min: 0
+  Max: 100
 --- !u!1001 &1598430266
 PrefabInstance:
   m_ObjectHideFlags: 0
