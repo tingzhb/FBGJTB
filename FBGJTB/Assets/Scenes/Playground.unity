@@ -1260,6 +1260,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Player Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8564760865816747213, guid: 7e11d8408e472b549bb80e38a19c30d3,
+        type: 3}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e11d8408e472b549bb80e38a19c30d3, type: 3}
 --- !u!1 &1764214107
