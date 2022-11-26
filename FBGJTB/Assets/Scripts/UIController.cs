@@ -1,8 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour{
-	[SerializeField] private TextMeshPro kills, deaths;
+	[SerializeField] private TextMeshProUGUI kills, deaths;
 	[SerializeField] private int playerNumber;
 
 	private void Awake(){

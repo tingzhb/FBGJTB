@@ -215,7 +215,7 @@ PrefabInstance:
     - target: {fileID: 4053973312064323021, guid: 31e6927dfa449b14cabd8304fb628b75,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4053973312064323021, guid: 31e6927dfa449b14cabd8304fb628b75,
         type: 3}
@@ -895,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 4053973312064323021, guid: 31e6927dfa449b14cabd8304fb628b75,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4053973312064323021, guid: 31e6927dfa449b14cabd8304fb628b75,
         type: 3}
@@ -1163,7 +1163,7 @@ PrefabInstance:
     - target: {fileID: 6419654691030311051, guid: 7e11d8408e472b549bb80e38a19c30d3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6419654691030311051, guid: 7e11d8408e472b549bb80e38a19c30d3,
         type: 3}
@@ -1259,6 +1259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Right Player Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564760865816747213, guid: 7e11d8408e472b549bb80e38a19c30d3,
+        type: 3}
+      propertyPath: playerNumber
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e11d8408e472b549bb80e38a19c30d3, type: 3}
