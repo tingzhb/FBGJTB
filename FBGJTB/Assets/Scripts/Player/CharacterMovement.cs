@@ -112,7 +112,7 @@ public class CharacterMovement : MonoBehaviour
                 transform.Rotate(Vector3.up * (lookMultiplierR * Time.deltaTime));
             }
         }
-        if (!isRight && invert && canMove){
+        if (isRight && invert && canMove){
             if (Input.GetKey(KeyCode.L)){
                 transform.Translate(Vector3.left * (movementMultiplierR * Time.deltaTime));
             }
@@ -133,7 +133,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
         }
-        if (isRight && invert && canMove){
+        if (!isRight && invert && canMove){
             if (Input.GetKey(KeyCode.D)){
                 transform.Translate(Vector3.left * (movementMultiplierL * Time.deltaTime));
             }
@@ -149,7 +149,7 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.E)){
                 transform.Rotate(Vector3.down * (lookMultiplierL * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.R)){
+            if (Input.GetKey(KeyCode.Q)){
                 transform.Rotate(Vector3.up * (lookMultiplierL * Time.deltaTime));
             }
         }

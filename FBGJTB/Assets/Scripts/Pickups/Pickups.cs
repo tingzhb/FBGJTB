@@ -11,6 +11,7 @@ public class Pickups : MonoBehaviour{
 		};
 		Broker.InvokeSubscribers(typeof(PickupMessage), pickupMessage);
 		
+		gameObject.SetActive(false);
 		Destroy(gameObject);
 	}
 }
