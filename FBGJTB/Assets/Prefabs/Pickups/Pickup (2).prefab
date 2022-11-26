@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupNumber: 2
-  pickupDuration: 30
+  pickupDuration: 10
+  pickupName: Fire Lag!

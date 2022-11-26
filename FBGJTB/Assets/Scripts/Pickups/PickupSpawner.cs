@@ -7,25 +7,22 @@ using Random = UnityEngine.Random;
 public class PickupSpawner : MonoBehaviour{
 	[SerializeField] private GameObject[] spawnPoints;
 	[SerializeField] private GameObject[] pickupVariants;
-	private int totalSpawned;
-	
+
 	private void OnEnable(){
 		Broker.Subscribe<PickupMessage>(OnNewPickupMessageReceived);
+		SpawnObject();
 	}
 	
 	private void OnDisable(){
 		Broker.Unsubscribe<PickupMessage>(OnNewPickupMessageReceived);
 	}
 	private void OnNewPickupMessageReceived(PickupMessage obj){
-		totalSpawned--;
+		SpawnObject();
 	}
-
-	private void Update(){
-		if (totalSpawned > 2)
-			return;
-		var randomSpawn = Random.Range(0, spawnPoints.Length);
+	
+	private void SpawnObject(){
 		var randomPickup = Random.Range(0, pickupVariants.Length);
+		var randomSpawn = Random.Range(0, spawnPoints.Length);
 		Instantiate(pickupVariants[randomPickup], spawnPoints[randomSpawn].transform.position, Quaternion.identity);
-		totalSpawned++;
 	}
 }

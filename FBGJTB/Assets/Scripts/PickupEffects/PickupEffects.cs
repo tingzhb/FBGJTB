@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PickupEffects : MonoBehaviour{
 	private bool isRight;
-	private void Start(){
+	private void OnEnable(){
 		Broker.Subscribe<PickupMessage>(OnNewPickupMessageReceived);
 		isRight = GetComponent<CharacterMovement>().isRight;
 	}
@@ -12,7 +12,7 @@ public class PickupEffects : MonoBehaviour{
 	}
 	
 	private void OnNewPickupMessageReceived(PickupMessage obj){
-		if (obj.IsRightPlayer != isRight){
+		if (obj.PickupPlayerIsRight != isRight){
 			switch (obj.PickUpNumber){
 				case 0:
 					Debug.Log($"Did Something on {obj.PickUpNumber} + {isRight}" );

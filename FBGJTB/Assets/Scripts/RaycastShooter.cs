@@ -40,11 +40,11 @@ public class RaycastShooter : MonoBehaviour{
         Broker.Unsubscribe<PickupMessage>(OnNewPickupMessageReceived);
     }
     private void OnNewPickupMessageReceived(PickupMessage obj){
-        if (obj.PickUpNumber == 2 && obj.IsRightPlayer && !isRight){
+        if (obj.PickUpNumber == 2 && obj.PickupPlayerIsRight && !isRight){
             lag += addLag;
             StartCoroutine(ResetLag(obj.PickUpDuration));
         }
-        if (obj.PickUpNumber == 2 && !obj.IsRightPlayer && isRight){
+        if (obj.PickUpNumber == 2 && !obj.PickupPlayerIsRight && isRight){
             lag +=addLag;
             StartCoroutine(ResetLag(obj.PickUpDuration));
         }

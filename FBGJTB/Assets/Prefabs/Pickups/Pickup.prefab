@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupNumber: 0
-  pickupDuration: 15
+  pickupDuration: 10
+  pickupName: Controls Inverted!

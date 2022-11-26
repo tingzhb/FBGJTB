@@ -36,19 +36,21 @@ public class CharacterMovement : MonoBehaviour
         canMove = true;
     }
     private void OnNewPickupMessageReceived(PickupMessage obj){
-        if (obj.PickUpNumber == 0 && obj.IsRightPlayer && !isRight){
+        // Invert Controls
+        if (obj.PickUpNumber == 0 && obj.PickupPlayerIsRight && !isRight){
             invert = true;
             StartCoroutine(InvertDuration(obj.PickUpDuration));
         }
-        if (obj.PickUpNumber == 0 && !obj.IsRightPlayer && isRight){
+        if (obj.PickUpNumber == 0 && !obj.PickupPlayerIsRight && isRight){
             invert = true;
             StartCoroutine(InvertDuration(obj.PickUpDuration));
         }
-        if (obj.PickUpNumber == 1 && obj.IsRightPlayer && !isRight){
+        // Increase Move Speed
+        if (obj.PickUpNumber == 1 && obj.PickupPlayerIsRight && !isRight){
             ChangeMultiplier(addMultiplier);
             StartCoroutine(BoostDuration(obj.PickUpDuration));
         }
-        if (obj.PickUpNumber == 1 && !obj.IsRightPlayer && isRight){
+        if (obj.PickUpNumber == 1 && !obj.PickupPlayerIsRight && isRight){
             ChangeMultiplier(addMultiplier);
             StartCoroutine(BoostDuration(obj.PickUpDuration));
         }
@@ -72,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Update(){
 
-        if (!isRight && canMove){
+        if (!isRight && canMove && !invert){
             if (Input.GetKey(KeyCode.A)){
                 transform.Translate(Vector3.left * (movementMultiplierL * Time.deltaTime));
             }
@@ -92,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
                 transform.Rotate(Vector3.up * (lookMultiplierL * Time.deltaTime));
             }
         }
-        if (isRight && canMove){
+        if (isRight && canMove && !invert){
             if (Input.GetKey(KeyCode.J)){
                 transform.Translate(Vector3.left * (movementMultiplierR * Time.deltaTime));
             }
