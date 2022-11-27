@@ -46,11 +46,11 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(InvertDuration(obj.PickUpDuration));
         }
         // Increase Move Speed
-        if (obj.PickUpNumber == 1 && obj.PickupPlayerIsRight && !isRight){
+        if (obj.PickUpNumber is 1 or 8 &&  obj.PickupPlayerIsRight && !isRight){
             ChangeMultiplier(addMultiplier);
             StartCoroutine(BoostDuration(obj.PickUpDuration));
         }
-        if (obj.PickUpNumber == 1 && !obj.PickupPlayerIsRight && isRight){
+        if (obj.PickUpNumber is 1 or 8 && !obj.PickupPlayerIsRight && isRight){
             ChangeMultiplier(addMultiplier);
             StartCoroutine(BoostDuration(obj.PickUpDuration));
         }
