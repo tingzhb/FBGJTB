@@ -54,6 +54,14 @@ public class CharacterMovement : MonoBehaviour
             ChangeMultiplier(addMultiplier);
             StartCoroutine(BoostDuration(obj.PickUpDuration));
         }
+        
+        // Send Player Backwards
+        if (obj.PickUpNumber == 6 && obj.PickupPlayerIsRight && !isRight){
+            transform.Translate(Vector3.back * (movementMultiplierL * 0.5f));
+        }
+        if (obj.PickUpNumber == 6 && !obj.PickupPlayerIsRight && isRight){
+            transform.Translate(Vector3.back * (movementMultiplierR * 0.5f));
+        }
     }
 
     private IEnumerator InvertDuration(float duration){
