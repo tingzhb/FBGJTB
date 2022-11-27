@@ -22,6 +22,9 @@ public class StartMenu : MonoBehaviour{
 			letsGo.SetActive(true);
 			StartCoroutine(DelayStart());
 		}
+		if (Input.GetKey(KeyCode.Escape)){
+			Application.Quit();
+		}
 	}
 	
 	private IEnumerator DelayStart(){
