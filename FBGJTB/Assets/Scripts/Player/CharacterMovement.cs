@@ -12,15 +12,14 @@ public class CharacterMovement : MonoBehaviour
     private bool canMove = true;
     private void Awake(){
         Broker.Subscribe<PickupMessage>(OnNewPickupMessageReceived);
-        Broker.Subscribe<UIChangeMessage>(OnUIChangedMessageReceived);
+        Broker.Subscribe<KillMessage>(OnKillMessageReceived);
     }
 	
     private void OnDisable(){
         Broker.Unsubscribe<PickupMessage>(OnNewPickupMessageReceived);
-        Broker.Unsubscribe<UIChangeMessage>(OnUIChangedMessageReceived);
-
+        Broker.Subscribe<KillMessage>(OnKillMessageReceived);
     }
-    private void OnUIChangedMessageReceived(UIChangeMessage obj){
+    private void OnKillMessageReceived(KillMessage obj){
         if (obj.Player == 0 && !isRight){
             canMove = false;
             StartCoroutine(ReableMovement());
@@ -103,16 +102,16 @@ public class CharacterMovement : MonoBehaviour
             }
         }
         if (isRight && canMove && !invert){
-            if (Input.GetKey(KeyCode.J)){
+            if (Input.GetKey(KeyCode.L)){
                 transform.Translate(Vector3.left * (movementMultiplierR * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.L)){
+            if (Input.GetKey(KeyCode.J)){
                 transform.Translate(Vector3.right * (movementMultiplierR * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.I)){
+            if (Input.GetKey(KeyCode.K)){
                 transform.Translate(Vector3.forward * (movementMultiplierR * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.K)){
+            if (Input.GetKey(KeyCode.I)){
                 transform.Translate(Vector3.back * (movementMultiplierR * Time.deltaTime));
             }
             if (Input.GetKey(KeyCode.U)){
@@ -123,13 +122,13 @@ public class CharacterMovement : MonoBehaviour
             }
         }
         if (isRight && invert && canMove){
-            if (Input.GetKey(KeyCode.L)){
+            if (Input.GetKey(KeyCode.J)){
                 transform.Translate(Vector3.left * (movementMultiplierR * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.J)){
+            if (Input.GetKey(KeyCode.L)){
                 transform.Translate(Vector3.right * (movementMultiplierR * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.K)){
+            if (Input.GetKey(KeyCode.I)){
                 transform.Translate(Vector3.forward * (movementMultiplierR * Time.deltaTime));
             }
             if (Input.GetKey(KeyCode.I)){
