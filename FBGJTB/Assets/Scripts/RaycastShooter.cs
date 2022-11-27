@@ -55,7 +55,7 @@ public class RaycastShooter : MonoBehaviour{
         lag -= addLag;
     }
 
-    void Update () 
+    void FixedUpdate() 
     {
         // Check if the player has pressed the fire button and if enough time has elapsed since they last fired
         if (Input.GetKey(KeyCode.Space) && Time.time > nextFire && !isRight && !amRight){
