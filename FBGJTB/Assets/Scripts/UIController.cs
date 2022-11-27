@@ -10,6 +10,8 @@ public class UIController : MonoBehaviour{
 	[SerializeField] private GameObject[] healthBars;
 
 	private void Awake(){
+		kills.text = $"K: 0";
+		deaths.text = $"D: 0";
 		Broker.Subscribe<UIChangeMessage>(OnUIChangedMessageReceived);
 		Broker.Subscribe<PickupMessage>(OnNewPickupMessageReceived);
 	}

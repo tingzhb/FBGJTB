@@ -23,7 +23,7 @@ public class StartMenu : MonoBehaviour{
 			StartCoroutine(DelayStart());
 		}
 	}
-
+	
 	private IEnumerator DelayStart(){
 		yield return new WaitForSeconds(2);
 		SceneManager.LoadScene(sceneBuildIndex: 1);

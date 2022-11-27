@@ -98,7 +98,7 @@ public class RaycastShooter : MonoBehaviour{
             // If there was a health script attached
             if (health != null){
                 // Call the damage function of that script, passing in our gunDamage variable
-                health.Damage(gunDamage);
+                health.Damage(gunDamage, true);
             }
 
             // Check if the object we hit has a rigidbody attached

@@ -15,7 +15,20 @@ public class PlayerHP: MonoBehaviour
     private int deaths;
     private bool dead;
 
-    public void Damage(int damageAmount) {
+    private void Awake(){
+        Broker.Subscribe<KillMessage>(OnKillMessageReceived);
+    }
+
+    private void OnDisable(){
+        Broker.Unsubscribe<KillMessage>(OnKillMessageReceived);
+    }
+    private void OnKillMessageReceived(KillMessage obj){
+        if (obj.Player != playerNumber){
+            kills++;
+            SendUIChangedMessage();
+        }
+    }
+    public void Damage(int damageAmount, bool playerKill) {
         //subtract damage amount when Damage function is called
         if (!dead){
             currentHealth -= damageAmount;
@@ -29,9 +42,13 @@ public class PlayerHP: MonoBehaviour
             deathNotice.gameObject.SetActive(true);
             StartCoroutine(WaitToRespawn());
             SendUIChangedMessage();
-            //if health has fallen below zero, deactivate it 
-            //gameObject.SetActive (false);
-            
+
+            if (playerKill){
+                KillMessage killMessage = new(){
+                    Player = playerNumber
+                };
+                Broker.InvokeSubscribers(typeof(KillMessage), killMessage); 
+            }
         }
     }
     private void SendUIChangedMessage(){
