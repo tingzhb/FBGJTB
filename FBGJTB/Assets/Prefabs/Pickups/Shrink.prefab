@@ -113,3 +113,5 @@ MonoBehaviour:
   pickupNumber: 8
   pickupDuration: 10
   pickupName: smol
+  lightning: {fileID: 1945481182113132067, guid: 95f2065e69662ee41b426790246058af,
+    type: 3}
